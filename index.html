@@ -993,9 +993,9 @@
                 <div style="margin-top: 60px;">
                     <div class="contact-detail">
                         <h4>📧 Email</h4>
-                        <a href="/cdn-cgi/l/email-protection#cbbba2b2beb8a3e5aa8ba5a4b9bfa3aeaab8bfaeb9a5e5aeafbe"><span class="__cf_email__" data-cfemail="57273e2e22243f793617393825233f3236242332253979323322">[email&#160;protected]</span></a>
+                        <a href="#" onclick="return sendEmail('piyush.a', 'northeastern.edu')" style="color: #ff6b6b; text-decoration: none; transition: color 0.3s;">piyush.a@northeastern.edu</a>
                         <br><br>
-                        <a href="/cdn-cgi/l/email-protection#98f9e8f1e1edebf0aba8d8fff5f9f1f4b6fbf7f5"><span class="__cf_email__" data-cfemail="87e6f7eefef2f4efb4b7c7e0eae6eeeba9e4e8ea">[email&#160;protected]</span></a>
+                        <a href="#" onclick="return sendEmail('apiyush30', 'gmail.com')" style="color: #ff6b6b; text-decoration: none; transition: color 0.3s;">apiyush30@gmail.com</a>
                     </div>
 
                     <div class="contact-detail">
@@ -1020,8 +1020,8 @@
                                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                             </svg>
                         </a>
-                        <a href="/cdn-cgi/l/email-protection#a5d5ccdcd0d6cd8bc4e5cbcad7d1cdc0c4d6d1c0d7cb8bc0c1d0" title="Northeastern Email">@</a>
-                        <a href="/cdn-cgi/l/email-protection#7d1c0d1404080e154e4d3d1a101c1411531e1210" title="Gmail">✉</a>
+                        <a href="#" onclick="return sendEmail('piyush.a', 'northeastern.edu')" title="Northeastern Email">@</a>
+                        <a href="#" onclick="return sendEmail('apiyush30', 'gmail.com')" title="Gmail">✉</a>
                     </div>
                 </div>
             </div>
@@ -1033,6 +1033,12 @@
     </div>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Email handler function to bypass GitHub Pages protection
+        function sendEmail(user, domain) {
+            window.location.href = 'mailto:' + user + '@' + domain;
+            return false;
+        }
+
         // Particle Animation
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
