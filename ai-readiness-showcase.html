@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise AI Readiness Intelligence Platform – Project Showcase · Abhinav Kumar Piyush</title>
+<meta name="description" content="PE Org-AI-R: private equity AI due diligence platform with hybrid RAG, LangGraph agents, MCP server and Airflow pipelines.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0a0e27;color:#d1d5db;line-height:1.7;overflow-x:hidden;
+background-image:radial-gradient(900px 500px at 85% -5%,rgba(139,92,246,.18),transparent 60%),radial-gradient(700px 500px at 0% 20%,rgba(255,107,107,.10),transparent 60%);background-attachment:fixed}
+a{color:#ff6b6b;text-decoration:none}
+a:hover{color:#ff8e53}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,14,39,.92);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.nav-in{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.nav-in a{font-size:15px;font-weight:600}
+.nav-links{display:flex;gap:22px;flex-wrap:wrap}
+.nav-links a{color:#e5e7eb;font-weight:500}
+.nav-links a:hover{color:#ff6b6b}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.hero{padding:140px 0 60px}
+.eyebrow{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#9ca3af;margin-bottom:18px}
+h1{font-size:54px;line-height:1.15;font-weight:900;color:#fff;margin-bottom:14px}
+h1 .grad{background:linear-gradient(135deg,#ff6b6b,#ff8e53,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.subtitle{font-size:22px;color:#ff6b6b;margin-bottom:22px}
+.lead{font-size:18px;max-width:880px;color:#d1d5db;margin-bottom:26px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.pill{background:rgba(139,92,246,.2);color:#a78bfa;padding:6px 13px;border-radius:15px;font-size:12px;font-weight:600}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-weight:600;font-size:16px;background:linear-gradient(135deg,#ff6b6b,#ff8e53);color:#fff}
+.btn:hover{color:#fff;transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,107,.35)}
+.btn.ghost{background:rgba(139,92,246,.18);border:1px solid rgba(139,92,246,.4);color:#e5e7eb}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin:10px 0 10px}
+.stat{background:rgba(30,41,59,.55);border:1px solid rgba(139,92,246,.3);border-radius:16px;padding:20px 18px;text-align:center}
+.stat b{display:block;font-size:30px;line-height:1.1;color:#fff;font-weight:800;margin-bottom:6px;background:linear-gradient(135deg,#ff6b6b,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat span{font-size:13px;color:#9ca3af;display:block;line-height:1.4}
+section{padding:56px 0 10px}
+h2{font-size:34px;color:#fff;font-weight:800;margin-bottom:8px}
+.sec-sub{color:#9ca3af;margin-bottom:26px;max-width:860px}
+h3{font-size:19px;color:#fff;margin-bottom:8px}
+.grid2,.grid3{display:grid;gap:20px}
+.grid2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.grid3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:rgba(30,41,59,.55);border:1px solid rgba(139,92,246,.3);border-radius:16px;padding:24px}
+.card:hover{border-color:rgba(255,107,107,.6)}
+.card p{font-size:15px;color:#cbd5e1}
+.card ul{margin:8px 0 0 18px;font-size:15px;color:#cbd5e1}
+.card li{margin-bottom:4px}
+.me{display:inline-block;background:rgba(34,197,94,.16);color:#22c55e;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;margin-bottom:10px}
+.diagram{background:rgba(15,23,42,.65);border:1px solid rgba(139,92,246,.3);border-radius:16px;padding:14px;margin:6px 0 10px}
+.diagram-scroll{overflow-x:auto}
+.caption{font-size:14px;color:#9ca3af;margin-top:10px}
+.tbl{overflow-x:auto;border:1px solid rgba(139,92,246,.3);border-radius:14px;background:rgba(30,41,59,.4)}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(139,92,246,.15)}
+th{background:rgba(139,92,246,.14);color:#fff;font-size:13px;letter-spacing:.5px;text-transform:uppercase}
+tr:last-child td{border-bottom:none}
+td code,.card code,p code{background:rgba(139,92,246,.2);color:#c4b5fd;padding:1px 6px;border-radius:5px;font-size:13px}
+td:first-child{color:#fff;font-weight:600;white-space:nowrap}
+.nowrap-off td:first-child{white-space:normal}
+pre.code{background:#070a1f;border:1px solid rgba(139,92,246,.3);border-radius:12px;padding:18px;overflow-x:auto;font-size:13.5px;line-height:1.55;color:#e2e8f0;font-family:'SF Mono',Menlo,Consolas,monospace}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0}
+.node{background:rgba(139,92,246,.18);border:1px solid rgba(139,92,246,.5);color:#fff;padding:8px 14px;border-radius:10px;font-size:14px;font-weight:600}
+.node.alt{background:rgba(255,107,107,.15);border-color:rgba(255,107,107,.5)}
+.node.ok{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.5)}
+.arr{color:#9ca3af}
+.callout{border-left:4px solid #ff6b6b;background:rgba(255,107,107,.08);padding:16px 20px;border-radius:0 12px 12px 0;color:#e5e7eb;margin:18px 0;font-size:15.5px}
+.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.stack .card{padding:18px 20px}
+.stack h3{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#9ca3af;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(139,92,246,.18);color:#c4b5fd;padding:5px 11px;border-radius:14px;font-size:13px;font-weight:600}
+.cta{margin:70px 0 30px;text-align:center;background:rgba(30,41,59,.55);border:1px solid rgba(139,92,246,.3);border-radius:20px;padding:44px 24px}
+.cta h2{font-size:30px}
+.cta p{margin-bottom:22px;color:#9ca3af}
+footer{text-align:center;color:#9ca3af;padding:30px 0 50px;font-size:14px}
+@media(max-width:768px){h1{font-size:36px}.hero{padding-top:150px}.subtitle{font-size:18px}h2{font-size:28px}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="nav-in">
+<a href="index.html#projects">← Back to Portfolio</a>
+<div class="nav-links"><a href="#architecture">Architecture</a><a href="#contribution">My Work</a><a href="#agents">Agents</a><a href="#rag">RAG</a><a href="#mcp">MCP</a><a href="#stack">Stack</a></div>
+<a href="https://github.com/BigDataIA-Sat-Spring26-Team-1/pe-org-air-cs5" target="_blank" rel="noopener">GitHub ↗</a>
+</div></nav>
+<header class="hero"><div class="wrap">
+<div class="eyebrow">Project Showcase · Spring 2026 · Team of three</div>
+<h1>Enterprise AI Readiness <span class="grad">Intelligence Platform</span></h1>
+<div class="subtitle">PE Org-AI-R: AI due diligence for private equity</div>
+<p class="lead">A data and agent platform that tells private equity firms how AI-ready a target company really is. It pulls signals from SEC filings, patents, job postings, and employee reviews, computes a multi-dimensional Org-AI-R score, and turns the evidence into citation-backed investment memos with a Buy / Hold / Pass recommendation. Case Study 4 added the RAG engine. Case Study 5 added the multi-agent workflow, MCP server, ROI analytics, and observability.</p>
+<div class="pills"><span class="pill">RAG</span><span class="pill">LangGraph</span><span class="pill">MCP</span><span class="pill">ChromaDB</span><span class="pill">BM25 + RRF</span><span class="pill">LiteLLM</span><span class="pill">FastAPI</span><span class="pill">Snowflake</span><span class="pill">Airflow</span><span class="pill">Next.js 15</span><span class="pill">Prometheus</span><span class="pill">Nginx</span></div>
+<div class="btns"><a class="btn" href="https://github.com/BigDataIA-Sat-Spring26-Team-1/pe-org-air-cs5" target="_blank" rel="noopener">💻 View on GitHub</a><a class="btn ghost" href="index.html#projects">← All Projects</a></div>
+</div></header><div class="wrap"><div class="stats"><div class="stat"><b>90%</b><span>less manual research per company</span></div><div class="stat"><b>10×</b><span>faster assessments</span></div><div class="stat"><b>35%</b><span>less irrelevant evidence after hybrid retrieval</span></div><div class="stat"><b>99%</b><span>pipeline reliability</span></div><div class="stat"><b>&lt;10 min</b><span>to process company-level unstructured data</span></div><div class="stat"><b>21</b><span>pytest modules across API, scoring, RAG, and SDK clients</span></div></div></div><section id="overview"><div class="wrap"><h2>The problem it solves</h2><p class="sec-sub">Assessing a target’s AI maturity usually means analysts reading filings, scanning job boards, and writing memos by hand.</p><div class="grid3"><div class="card"><h3>Collect</h3><p>Airflow pipelines gather signals from SEC filings, PatentsView, job postings, Glassdoor, company websites, and leadership data, with rate limiting, retries, and graceful degradation.</p></div><div class="card"><h3>Score</h3><p>A scoring engine combines dimension signals (V^R, H^R, Synergy, confidence) into one Org-AI-R score, with per-dimension evidence kept for audit.</p></div><div class="card"><h3>Justify and decide</h3><p>A hybrid RAG layer and a LangGraph agent workflow turn evidence into IC memos and LP letters, and pause for a human when the score falls below a threshold.</p></div></div></div></section><section id="architecture"><div class="wrap"><h2>System architecture</h2><p class="sec-sub">Everything sits behind one Nginx entry point. Airflow acts as a worker pool, and the MCP server runs as its own container so Claude Desktop can connect independently of the main API.</p><div class="diagram"><div class="diagram-scroll">
+<svg viewBox="0 0 1100 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Enterprise AI Readiness platform architecture" style="min-width:792px;width:100%;height:auto;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs>
+<rect x="20" y="30" width="205" height="50" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="122.5" y="54" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">SEC EDGAR filings</text>
+<rect x="20" y="92" width="205" height="50" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="122.5" y="116" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Patents (PatentsView)</text>
+<rect x="20" y="154" width="205" height="50" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="122.5" y="178" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Job postings (JobSpy)</text>
+<rect x="20" y="216" width="205" height="50" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="122.5" y="240" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Glassdoor reviews</text>
+<rect x="20" y="278" width="205" height="50" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="122.5" y="302" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Digital presence (Playwright)</text>
+<rect x="285" y="60" width="230" height="120" rx="12" fill="rgba(255,107,107,0.16)" stroke="#ff6b6b" stroke-width="1.5"/>
+<text x="400.0" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Apache Airflow</text>
+<text x="400.0" y="104" text-anchor="middle" font-size="12" fill="#cbd5e1">dynamic task mapping</text>
+<text x="400.0" y="121" text-anchor="middle" font-size="12" fill="#cbd5e1">one isolated task group per company</text>
+<text x="400.0" y="138" text-anchor="middle" font-size="12" fill="#cbd5e1">partial score if a source fails</text>
+<rect x="285" y="230" width="230" height="100" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="400.0" y="254" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Snowflake · S3 · Redis</text>
+<text x="400.0" y="274" text-anchor="middle" font-size="12" fill="#cbd5e1">single source of truth</text>
+<text x="400.0" y="291" text-anchor="middle" font-size="12" fill="#cbd5e1">MERGE upserts · cached reviews</text>
+<rect x="575" y="60" width="230" height="100" rx="12" fill="rgba(255,142,83,0.16)" stroke="#ff8e53" stroke-width="1.5"/>
+<text x="690.0" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Org-AI-R scoring engine</text>
+<text x="690.0" y="104" text-anchor="middle" font-size="12" fill="#cbd5e1">V^R · H^R · Synergy</text>
+<text x="690.0" y="121" text-anchor="middle" font-size="12" fill="#cbd5e1">→ composite readiness score</text>
+<rect x="575" y="210" width="230" height="120" rx="12" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="690.0" y="234" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Hybrid RAG</text>
+<text x="690.0" y="254" text-anchor="middle" font-size="12" fill="#cbd5e1">ChromaDB dense (0.6)</text>
+<text x="690.0" y="271" text-anchor="middle" font-size="12" fill="#cbd5e1">BM25 sparse (0.4) · RRF fusion</text>
+<text x="690.0" y="288" text-anchor="middle" font-size="12" fill="#cbd5e1">HyDE · LiteLLM router</text>
+<rect x="865" y="60" width="215" height="135" rx="12" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+<text x="972.5" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">LangGraph agents</text>
+<text x="972.5" y="104" text-anchor="middle" font-size="12" fill="#cbd5e1">SEC Analyst → Scorer</text>
+<text x="972.5" y="121" text-anchor="middle" font-size="12" fill="#cbd5e1">→ Evidence → Value Creator</text>
+<text x="972.5" y="138" text-anchor="middle" font-size="12" fill="#cbd5e1">→ HITL check</text>
+<text x="972.5" y="155" text-anchor="middle" font-size="12" fill="#cbd5e1">IC memo · LP letter</text>
+<text x="972.5" y="211" text-anchor="middle" font-size="12" font-weight="600" fill="#22c55e">★ 3 agents + exports built by me</text>
+<rect x="865" y="240" width="215" height="90" rx="12" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="972.5" y="264" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">FastAPI · 16 routers</text>
+<text x="972.5" y="284" text-anchor="middle" font-size="12" fill="#cbd5e1">behind Nginx</text>
+<text x="972.5" y="301" text-anchor="middle" font-size="12" fill="#cbd5e1">Next.js dashboards</text>
+<rect x="575" y="390" width="230" height="80" rx="12" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+<text x="690.0" y="414" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">MCP server (SSE, :3001)</text>
+<text x="690.0" y="434" text-anchor="middle" font-size="12" fill="#cbd5e1">7 tools · 2 prompts · 2 resources</text>
+<text x="690.0" y="486" text-anchor="middle" font-size="12" font-weight="600" fill="#22c55e">★ built by me</text>
+<rect x="865" y="390" width="215" height="80" rx="12" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+<text x="972.5" y="414" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Claude Desktop</text>
+<text x="972.5" y="434" text-anchor="middle" font-size="12" fill="#cbd5e1">via mcp-remote bridge</text>
+<rect x="285" y="390" width="230" height="80" rx="12" fill="rgba(255,142,83,0.16)" stroke="#ff8e53" stroke-width="1.5"/>
+<text x="400.0" y="414" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Prometheus</text>
+<text x="400.0" y="434" text-anchor="middle" font-size="12" fill="#cbd5e1">MCP · agent · HITL counters</text>
+<polyline points="225,180 285,120" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="400,180 400,230" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="515,265 575,130" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="515,300 575,285" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="805,110 865,110" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="805,250 865,185" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="972,195 972,240" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="690,390 690,330" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="718" y="365" text-anchor="middle" font-size="11" fill="#94a3b8">tools</text>
+<polyline points="865,430 805,430" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="575,430 515,430" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<text x="545" y="422" text-anchor="middle" font-size="11" fill="#94a3b8">metrics</text>
+</svg></div></div><p class="caption">Nine-container Docker Compose stack: Nginx, FastAPI, Next.js, MCP server, Airflow webserver / scheduler / triggerer, Postgres, and Redis.</p></div></section><section id="contribution"><div class="wrap"><h2>What I built</h2><p class="sec-sub">My share of the Case Study 5 build (team of three).</p><div class="grid2"><div class="card"><span class="me">Built by me</span><br><h3>MCP integration gateway</h3><p>The server that exposes the platform’s analytical toolkit to Claude Desktop and other MCP clients: seven tools, two prompt workflows, and two resources over SSE, plus the <code>mcp-remote</code> bridge configuration.</p></div><div class="card"><span class="me">Built by me</span><br><h3>Specialized agents</h3><p>The Talent, Governance, and Security agents in the LangGraph due diligence workflow, each producing a focused signal analysis for its dimension.</p></div><div class="card"><span class="me">Built by me</span><br><h3>IC presentation agent and Word export</h3><p>Final narrative synthesis from the agents’ outputs, exported as a Word document for the investment committee.</p></div><div class="card"><span class="me">Built by me</span><br><h3>LP letter generation</h3><p>An endpoint that turns due diligence results into a limited-partner update letter in Word format.</p></div><div class="card"><h3>Team</h3><p><strong>Aakash</strong>: hybrid re-ranking, assessment history service, agent-UI bridge, Next.js portfolio dashboard, Fund-AI-R calculator, Mem0 memory.<br><strong>Rahul</strong>: LangGraph StateGraph and orchestrator, shared thread context, supervisor routing, Prometheus metrics, IC memo generator.</p></div></div></div></section><section id="agents"><div class="wrap"><h2>Agentic due diligence</h2><p class="sec-sub">A LangGraph StateGraph replaces ad-hoc API calls with a typed, auditable pipeline over a shared <code>DueDiligenceState</code>.</p><div class="flow"><span class="node">SEC Analyst</span><span class="arr">→</span><span class="node">Scorer</span><span class="arr">→</span><span class="node">Evidence Agent</span><span class="arr">→</span><span class="node alt">Value Creator*</span><span class="arr">→</span><span class="node ok">HITL check</span></div><p class="caption">* skipped in Quick mode.</p><div class="tbl nowrap-off"><table><thead><tr><th>Node</th><th>Responsibility</th></tr></thead><tbody><tr><td>SEC Analyst</td><td>Fetches and analyzes SEC filing signals for the target</td></tr><tr><td>Scorer</td><td>Calls the scoring engine for Org-AI-R, V^R, H^R, and Synergy</td></tr><tr><td>Evidence Agent</td><td>Retrieves signals and writes RAG-backed dimension justifications</td></tr><tr><td>Value Creator</td><td>Gap analysis, EBITDA impact projection, and a 100-day value creation plan</td></tr><tr><td>HITL check</td><td>Pauses the workflow when Org-AI-R is below the threshold (default 60) and sets <code>approval_status = pending</code> for analyst review</td></tr></tbody></table></div><div class="grid2" style="margin-top:20px"><div class="card"><h3>Full mode</h3><p>All five nodes, including gap analysis and EBITDA projection. About 60–120 seconds.</p></div><div class="card"><h3>Quick mode</h3><p>Skips the Value Creator and returns scores plus evidence. About 20–40 seconds.</p></div></div></div></section><section id="rag"><div class="wrap"><h2>Hybrid RAG and the IC package</h2><p class="sec-sub">Pure vector search misses exact technical terms, and pure BM25 misses paraphrases. The platform uses both.</p><div class="grid2"><div class="card"><h3>Hybrid retrieval</h3><p>ChromaDB dense search (weight 0.6) and BM25 sparse search (weight 0.4) fused with Reciprocal Rank Fusion. Each document is tagged with its OrgAIR dimension for filtered retrieval, and optional HyDE expands abstract queries before embedding.</p></div><div class="card"><h3>Score justification</h3><p>The generator writes roughly 150-word PE-style memos per dimension with inline <code>[N]</code> citations and one identified gap sentence.</p></div><div class="card"><h3>IC Meeting Package</h3><p><code>POST /justify</code> retrieves evidence for all seven dimensions concurrently, recomputes the scores, and synthesizes strengths, gaps, risks, and a Buy / Hold / Pass recommendation as a structured package.</p></div><div class="card"><h3>Analyst notes</h3><p>Interview transcripts and data-room findings can be ingested manually and become searchable alongside automated signals at a 0.9 confidence weight.</p></div></div><h3 style="margin:26px 0 12px">LLM router with a hard budget cap</h3><div class="tbl nowrap-off"><table><thead><tr><th>Task</th><th>Primary</th><th>Fallback</th></tr></thead><tbody><tr><td>Evidence extraction</td><td>GPT-4o</td><td>Claude-3.5-Sonnet</td></tr><tr><td>Justification generation</td><td>Claude-3.5-Sonnet</td><td>GPT-4o</td></tr><tr><td>Chat response</td><td>Claude-3-Haiku</td><td>GPT-3.5-Turbo</td></tr></tbody></table></div><p class="caption">All calls go through one router with a <code>DailyBudget</code> tracker that hard-caps spend at $50 a day.</p></div></section><section id="airflow"><div class="wrap"><h2>Pipeline resilience</h2><p class="sec-sub">Built to survive rate limits, blocked scrapers, and heavy payloads.</p><div class="tbl nowrap-off"><table><thead><tr><th>Concern</th><th>How it is handled</th></tr></thead><tbody><tr><td>Per-company parallelism</td><td>Dynamic Task Mapping (<code>.expand()</code>) with one isolated <code>MappedTaskGroup</code> per company</td></tr><tr><td>Partial failures</td><td><code>TriggerRule.ALL_DONE</code>: if the Glassdoor scraper is rate-limited, SEC and patent analysis still finish and a partial score is computed with a lower confidence</td></tr><tr><td>Heavy payloads</td><td>10-K chunks go to a shared Docker volume instead of XCom, keeping the Airflow metadata DB fast</td></tr><tr><td>API quotas</td><td><code>AsyncRateLimiter</code> capped at 45 requests a minute for PatentsView, spacing between SEC and job requests, Tenacity exponential backoff</td></tr><tr><td>Bot detection</td><td>Playwright with stealth mode and User-Agent rotation, falling back to job-description keyword analysis if a site blocks the scan</td></tr><tr><td>Concurrency</td><td><code>asyncio.Semaphore(5)</code> to protect Snowflake connections, and a thread pool for parsing 50 MB filings so the event loop stays responsive</td></tr></tbody></table></div><h3 style="margin:26px 0 12px">DAGs</h3><div class="tbl nowrap-off"><table><thead><tr><th>DAG</th><th>Schedule</th><th>Purpose</th></tr></thead><tbody><tr><td><code>integration_pipeline</code></td><td>daily</td><td>Per-company SEC, board, talent, and culture analysis, then the final OrgAIR score</td></tr><tr><td><code>sec_filing_ingestion</code></td><td>daily</td><td>Download, parse, chunk, and store 10-K and 10-Q filings in S3 and Snowflake</td></tr><tr><td><code>pe_evidence_indexing</code></td><td>daily, 2 AM</td><td>Index unindexed evidence into ChromaDB and BM25, marking records to avoid reprocessing</td></tr><tr><td><code>sec_quality_monitor</code></td><td>weekly</td><td>Audit document and chunk counts and flag zero-chunk parsing failures</td></tr><tr><td><code>sec_backfill</code></td><td>manual</td><td>Backfill historical filings for chosen tickers</td></tr></tbody></table></div></div></section><section id="mcp"><div class="wrap"><h2>MCP server</h2><p class="sec-sub">Claude Desktop connects through the <code>mcp-remote</code> bridge (stdio to SSE). Seven tools, two prompts, two resources.</p><div class="tbl nowrap-off"><table><thead><tr><th>Tool</th><th>What it does</th></tr></thead><tbody><tr><td><code>get_portfolio_summary</code></td><td>All portfolio companies with Org-AI-R, V^R, and H^R scores</td></tr><tr><td><code>calculate_org_air_score</code></td><td>Org-AI-R score for a company using the scoring engine</td></tr><tr><td><code>get_company_evidence</code></td><td>Granular signals: patents, SEC filings, job signals</td></tr><tr><td><code>generate_justification</code></td><td>RAG-backed justification memo for one dimension</td></tr><tr><td><code>batch_generate_justifications</code></td><td>Multiple dimensions in parallel with <code>asyncio.gather</code>, since the client calls tools one at a time</td></tr><tr><td><code>project_ebitda_impact</code></td><td>Base, conservative, and optimistic EBITDA uplift from a score change</td></tr><tr><td><code>run_gap_analysis</code></td><td>Gaps to a target score with prioritized interventions</td></tr></tbody></table></div><div class="grid2" style="margin-top:20px"><div class="card"><h3>Prompts</h3><ul><li><code>due_diligence_assessment</code></li><li><code>ic_meeting_prep</code></li></ul></div><div class="card"><h3>Resources</h3><ul><li><code>orgair://parameters/v2.0</code></li><li><code>orgair://sectors</code></li></ul></div></div></div></section><section id="analytics"><div class="wrap"><h2>Investment analytics and observability</h2><div class="tbl nowrap-off"><table><thead><tr><th>Metric</th><th>Formula</th></tr></thead><tbody><tr><td>MOIC</td><td><code>current_ev / entry_ev</code></td></tr><tr><td>Annualized ROI %</td><td><code>((MOIC)^(1/years) − 1) × 100</code></td></tr><tr><td>AI-attributed value %</td><td><code>delta_org_air × ebitda_multiplier / entry_ev × 100</code></td></tr><tr><td>Fund-AI-R</td><td>EV-weighted composite across portfolio companies</td></tr></tbody></table></div><p class="caption" style="margin-bottom:18px">Prometheus counters cover <code>mcp_tool_calls</code>, <code>agent_invocations</code>, <code>hitl_approvals</code>, and <code>cs_client_calls</code>, shown on an auto-refreshing dashboard.</p></div></section><section id="decisions"><div class="wrap"><h2>Key design decisions</h2><div class="grid2"><div class="card"><h3>Single source of truth</h3><p>Legacy tables were consolidated into one <code>companies</code> schema so the SEC pipeline can anchor discovered CIKs to existing targets.</p></div><div class="card"><h3>Snowflake singleton</h3><p>A thread-safe connection manager with a persistent session pool avoids the SSL handshake on every request.</p></div><div class="card"><h3>Graceful degradation</h3><p>Missing S3 or PatentsView credentials log a warning and the rest of the platform keeps serving.</p></div><div class="card"><h3>MCP as a separate container</h3><p>Keeps the tool gateway independent of the main API and lets the bridge handle stdio-to-SSE translation for Claude Desktop.</p></div><div class="card"><h3>LangGraph over ad-hoc calls</h3><p>Typed shared state, conditional edges for Full and Quick modes without duplicating agent logic, and a human-in-the-loop interrupt.</p></div><div class="card"><h3>LiteLLM routing</h3><p>Swapping models is a routing-table change, not a code rewrite.</p></div></div></div></section><section id="stack"><div class="wrap"><h2>Tech stack</h2><div class="stack"><div class="card"><h3>Frontend</h3><div class="chips"><span class="chip">Next.js 15</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span><span class="chip">Lucide</span></div></div><div class="card"><h3>Backend</h3><div class="chips"><span class="chip">FastAPI</span><span class="chip">Pydantic V2</span><span class="chip">structlog</span><span class="chip">Tenacity</span></div></div><div class="card"><h3>Data</h3><div class="chips"><span class="chip">Snowflake</span><span class="chip">Redis</span><span class="chip">AWS S3</span></div></div><div class="card"><h3>Orchestration</h3><div class="chips"><span class="chip">Apache Airflow 2.x</span><span class="chip">TaskFlow API</span><span class="chip">Dynamic Task Mapping</span></div></div><div class="card"><h3>RAG</h3><div class="chips"><span class="chip">ChromaDB</span><span class="chip">BM25Okapi</span><span class="chip">text-embedding-3-small</span><span class="chip">HyDE</span></div></div><div class="card"><h3>LLM</h3><div class="chips"><span class="chip">LiteLLM</span><span class="chip">GPT-4o</span><span class="chip">Claude 3.5 Sonnet</span></div></div><div class="card"><h3>Agents and tools</h3><div class="chips"><span class="chip">LangGraph</span><span class="chip">MCP SDK</span><span class="chip">mcp-remote</span><span class="chip">python-docx</span></div></div><div class="card"><h3>Collection</h3><div class="chips"><span class="chip">Playwright (stealth)</span><span class="chip">JobSpy</span><span class="chip">Wextractor</span><span class="chip">PatentsView</span><span class="chip">Boto3</span></div></div><div class="card"><h3>Platform</h3><div class="chips"><span class="chip">Docker Compose</span><span class="chip">Nginx</span><span class="chip">Prometheus</span><span class="chip">Pytest</span></div></div></div></div></section><section id="limits"><div class="wrap"><h2>Known limitations</h2><div class="grid2"><div class="card"><h3>In-memory state</h3><p>The BM25 index and Prometheus counters reset on container restart, so evidence must be re-ingested to restore the hybrid index.</p></div><div class="card"><h3>Source quotas</h3><p>Glassdoor and site scans are rate-limited or occasionally blocked. Reviews are cached in S3 and the scoring degrades to partial confidence instead of failing.</p></div></div></div></section><div class="wrap"><div class="cta"><h2>Read the code</h2><p>Full source, architecture diagram, and API reference.</p><div class="btns" style="justify-content:center"><a class="btn" href="https://github.com/BigDataIA-Sat-Spring26-Team-1/pe-org-air-cs5" target="_blank" rel="noopener">💻 View on GitHub</a><a class="btn ghost" href="index.html#projects">← Back to Portfolio</a></div></div></div>
+<footer>© 2026 Abhinav Kumar Piyush · <a href="index.html">Portfolio</a> · <a href="https://github.com/BigDataIA-Sat-Spring26-Team-1/pe-org-air-cs5" target="_blank" rel="noopener">Source on GitHub</a></footer>
+</body>
+</html>

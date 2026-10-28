@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CurateAI – Project Showcase · Abhinav Kumar Piyush</title>
+<meta name="description" content="CurateAI: multi-tenant AI news intelligence platform built with Airflow, LangGraph, FastAPI, Snowflake, Qdrant and MCP.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0a0e27;color:#d1d5db;line-height:1.7;overflow-x:hidden;
+background-image:radial-gradient(900px 500px at 85% -5%,rgba(139,92,246,.18),transparent 60%),radial-gradient(700px 500px at 0% 20%,rgba(255,107,107,.10),transparent 60%);background-attachment:fixed}
+a{color:#ff6b6b;text-decoration:none}
+a:hover{color:#ff8e53}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,14,39,.92);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.nav-in{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.nav-in a{font-size:15px;font-weight:600}
+.nav-links{display:flex;gap:22px;flex-wrap:wrap}
+.nav-links a{color:#e5e7eb;font-weight:500}
+.nav-links a:hover{color:#ff6b6b}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.hero{padding:140px 0 60px}
+.eyebrow{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#9ca3af;margin-bottom:18px}
+h1{font-size:54px;line-height:1.15;font-weight:900;color:#fff;margin-bottom:14px}
+h1 .grad{background:linear-gradient(135deg,#ff6b6b,#ff8e53,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.subtitle{font-size:22px;color:#ff6b6b;margin-bottom:22px}
+.lead{font-size:18px;max-width:880px;color:#d1d5db;margin-bottom:26px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.pill{background:rgba(139,92,246,.2);color:#a78bfa;padding:6px 13px;border-radius:15px;font-size:12px;font-weight:600}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-weight:600;font-size:16px;background:linear-gradient(135deg,#ff6b6b,#ff8e53);color:#fff}
+.btn:hover{color:#fff;transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,107,.35)}
+.btn.ghost{background:rgba(139,92,246,.18);border:1px solid rgba(139,92,246,.4);color:#e5e7eb}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin:10px 0 10px}
+.stat{background:rgba(30,41,59,.55);border:1px solid rgba(139,92,246,.3);border-radius:16px;padding:20px 18px;text-align:center}
+.stat b{display:block;font-size:30px;line-height:1.1;color:#fff;font-weight:800;margin-bottom:6px;background:linear-gradient(135deg,#ff6b6b,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat span{font-size:13px;color:#9ca3af;display:block;line-height:1.4}
+section{padding:56px 0 10px}
+h2{font-size:34px;color:#fff;font-weight:800;margin-bottom:8px}
+.sec-sub{color:#9ca3af;margin-bottom:26px;max-width:860px}
+h3{font-size:19px;color:#fff;margin-bottom:8px}
+.grid2,.grid3{display:grid;gap:20px}
+.grid2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.grid3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:rgba(30,41,59,.55);border:1px solid rgba(139,92,246,.3);border-radius:16px;padding:24px}
+.card:hover{border-color:rgba(255,107,107,.6)}
+.card p{font-size:15px;color:#cbd5e1}
+.card ul{margin:8px 0 0 18px;font-size:15px;color:#cbd5e1}
+.card li{margin-bottom:4px}
+.me{display:inline-block;background:rgba(34,197,94,.16);color:#22c55e;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;margin-bottom:10px}
+.diagram{background:rgba(15,23,42,.65);border:1px solid rgba(139,92,246,.3);border-radius:16px;padding:14px;margin:6px 0 10px}
+.diagram-scroll{overflow-x:auto}
+.caption{font-size:14px;color:#9ca3af;margin-top:10px}
+.tbl{overflow-x:auto;border:1px solid rgba(139,92,246,.3);border-radius:14px;background:rgba(30,41,59,.4)}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(139,92,246,.15)}
+th{background:rgba(139,92,246,.14);color:#fff;font-size:13px;letter-spacing:.5px;text-transform:uppercase}
+tr:last-child td{border-bottom:none}
+td code,.card code,p code{background:rgba(139,92,246,.2);color:#c4b5fd;padding:1px 6px;border-radius:5px;font-size:13px}
+td:first-child{color:#fff;font-weight:600;white-space:nowrap}
+.nowrap-off td:first-child{white-space:normal}
+pre.code{background:#070a1f;border:1px solid rgba(139,92,246,.3);border-radius:12px;padding:18px;overflow-x:auto;font-size:13.5px;line-height:1.55;color:#e2e8f0;font-family:'SF Mono',Menlo,Consolas,monospace}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0}
+.node{background:rgba(139,92,246,.18);border:1px solid rgba(139,92,246,.5);color:#fff;padding:8px 14px;border-radius:10px;font-size:14px;font-weight:600}
+.node.alt{background:rgba(255,107,107,.15);border-color:rgba(255,107,107,.5)}
+.node.ok{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.5)}
+.arr{color:#9ca3af}
+.callout{border-left:4px solid #ff6b6b;background:rgba(255,107,107,.08);padding:16px 20px;border-radius:0 12px 12px 0;color:#e5e7eb;margin:18px 0;font-size:15.5px}
+.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.stack .card{padding:18px 20px}
+.stack h3{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#9ca3af;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(139,92,246,.18);color:#c4b5fd;padding:5px 11px;border-radius:14px;font-size:13px;font-weight:600}
+.cta{margin:70px 0 30px;text-align:center;background:rgba(30,41,59,.55);border:1px solid rgba(139,92,246,.3);border-radius:20px;padding:44px 24px}
+.cta h2{font-size:30px}
+.cta p{margin-bottom:22px;color:#9ca3af}
+footer{text-align:center;color:#9ca3af;padding:30px 0 50px;font-size:14px}
+@media(max-width:768px){h1{font-size:36px}.hero{padding-top:150px}.subtitle{font-size:18px}h2{font-size:28px}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="nav-in">
+<a href="index.html#projects">← Back to Portfolio</a>
+<div class="nav-links"><a href="#architecture">Architecture</a><a href="#contribution">My Work</a><a href="#pipeline">Pipeline</a><a href="#personalization">Personalization</a><a href="#decisions">Decisions</a><a href="#stack">Stack</a></div>
+<a href="https://github.com/BigDataIA-Sat-Spring26-Team-1/Final_Project" target="_blank" rel="noopener">GitHub ↗</a>
+</div></nav>
+<header class="hero"><div class="wrap">
+<div class="eyebrow">Project Showcase · Spring 2026 · Team of three</div>
+<h1>Curate<span class="grad">AI</span></h1>
+<div class="subtitle">Multi-Tenant AI News Intelligence Platform</div>
+<p class="lead">CurateAI ingests about 3,000 technical articles a day from RSS feeds, ArXiv, and HackerNews, collapses duplicates into story clusters, and ranks them against each reader’s persona. Individual readers get a personalized daily newsletter. Enterprise tenants get a strategic research brief shaped by their own company profile. Both run as LangGraph agents orchestrated by Apache Airflow.</p>
+<div class="pills"><span class="pill">Airflow</span><span class="pill">LangGraph</span><span class="pill">FastAPI</span><span class="pill">Next.js 16</span><span class="pill">Snowflake</span><span class="pill">Qdrant</span><span class="pill">LiteLLM</span><span class="pill">MCP</span><span class="pill">Prometheus</span><span class="pill">GCP Cloud Run</span></div>
+<div class="btns"><a class="btn" href="https://github.com/BigDataIA-Sat-Spring26-Team-1/Final_Project" target="_blank" rel="noopener">💻 View on GitHub</a><a class="btn ghost" href="index.html#projects">← All Projects</a></div>
+</div></header><div class="wrap"><div class="stats"><div class="stat"><b>~3,000</b><span>articles ingested every day</span></div><div class="stat"><b>8</b><span>production Airflow DAGs</span></div><div class="stat"><b>7</b><span>MCP tools exposed to Claude Desktop</span></div><div class="stat"><b>0.60 → 0.52</b><span>cross-tenant brief similarity (lower means more differentiated)</span></div><div class="stat"><b>97</b><span>automated tests (38 backend, 59 frontend)</span></div></div></div><section id="overview"><div class="wrap"><h2>Two products on one pipeline</h2><p class="sec-sub">The same ingestion, deduplication, and embedding layer feeds two very different surfaces.</p><div class="grid2"><div class="card"><h3>B2C: personalized newsletter</h3><p>A reader uploads a LinkedIn PDF and an LLM extracts a 10-dimension interest vector. Every like, dislike, or skip nudges a separate behavioral vector. Each morning a writer/editor agent drafts a newsletter from the day’s top clusters, and the reader sends it to their inbox with one click.</p></div><div class="card"><h3>B2B: strategic research brief</h3><p>A company fills in a ten-field profile and an LLM extracts a matching affinity vector. That vector becomes a hard constraint in the generation prompt, so each tenant’s brief (angle, titles, keywords, structure) is visibly different. Keyword velocity from SpaCy NER shows which entities are surging.</p></div></div></div></section><section id="architecture"><div class="wrap"><h2>System architecture</h2><p class="sec-sub">Snowflake is the system of record, Qdrant holds the embeddings, Airflow runs the nightly pipeline on a GCE VM, and the backend stays a thin trigger layer on Cloud Run.</p><div class="diagram"><div class="diagram-scroll">
+<svg viewBox="0 0 1100 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CurateAI system architecture" style="min-width:792px;width:100%;height:auto;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs>
+<rect x="20" y="40" width="190" height="80" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="115.0" y="64" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Content sources</text>
+<text x="115.0" y="84" text-anchor="middle" font-size="12" fill="#cbd5e1">RSS · ArXiv · HackerNews</text>
+<text x="115.0" y="101" text-anchor="middle" font-size="12" fill="#cbd5e1">~3,000 articles / day</text>
+<rect x="20" y="320" width="190" height="80" rx="12" fill="rgba(255,142,83,0.16)" stroke="#ff8e53" stroke-width="1.5"/>
+<text x="115.0" y="344" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">OpenAI</text>
+<text x="115.0" y="364" text-anchor="middle" font-size="12" fill="#cbd5e1">text-embedding-3-small</text>
+<text x="115.0" y="381" text-anchor="middle" font-size="12" fill="#cbd5e1">gpt-4o-mini via LiteLLM</text>
+<rect x="280" y="40" width="260" height="115" rx="12" fill="rgba(255,107,107,0.16)" stroke="#ff6b6b" stroke-width="1.5"/>
+<text x="410.0" y="64" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Apache Airflow · GCE VM</text>
+<text x="410.0" y="84" text-anchor="middle" font-size="12" fill="#cbd5e1">8 production DAGs</text>
+<text x="410.0" y="101" text-anchor="middle" font-size="12" fill="#cbd5e1">ingest → dedup → trend → vector sync</text>
+<text x="410.0" y="118" text-anchor="middle" font-size="12" fill="#cbd5e1">→ personalize → newsletter</text>
+<text x="410.0" y="171" text-anchor="middle" font-size="12" font-weight="600" fill="#22c55e">★ 5 of the DAGs built by me</text>
+<rect x="280" y="250" width="120" height="100" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="340.0" y="274" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Snowflake</text>
+<text x="340.0" y="294" text-anchor="middle" font-size="12" fill="#cbd5e1">system of record</text>
+<text x="340.0" y="311" text-anchor="middle" font-size="12" fill="#cbd5e1">VARIANT weights</text>
+<rect x="420" y="250" width="120" height="100" rx="12" fill="rgba(255,142,83,0.16)" stroke="#ff8e53" stroke-width="1.5"/>
+<text x="480.0" y="274" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Qdrant Cloud</text>
+<text x="480.0" y="294" text-anchor="middle" font-size="12" fill="#cbd5e1">1,536-dim vectors</text>
+<text x="480.0" y="311" text-anchor="middle" font-size="12" fill="#cbd5e1">cosine · HNSW</text>
+<rect x="620" y="100" width="260" height="160" rx="12" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="750.0" y="124" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">FastAPI · Cloud Run</text>
+<text x="750.0" y="144" text-anchor="middle" font-size="12" fill="#cbd5e1">REST API · rate limiting</text>
+<text x="750.0" y="161" text-anchor="middle" font-size="12" fill="#cbd5e1">LangGraph agents</text>
+<text x="750.0" y="178" text-anchor="middle" font-size="12" fill="#cbd5e1">B2C writer → editor</text>
+<text x="750.0" y="195" text-anchor="middle" font-size="12" fill="#cbd5e1">B2B analyst brief</text>
+<text x="750.0" y="212" text-anchor="middle" font-size="12" fill="#cbd5e1">Prometheus /metrics</text>
+<rect x="620" y="310" width="260" height="80" rx="12" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+<text x="750.0" y="334" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">FastMCP server (SSE)</text>
+<text x="750.0" y="354" text-anchor="middle" font-size="12" fill="#cbd5e1">7 tools mounted on the API</text>
+<text x="750.0" y="406" text-anchor="middle" font-size="12" font-weight="600" fill="#22c55e">★ built by me</text>
+<rect x="940" y="70" width="140" height="80" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="1010.0" y="94" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Next.js 16</text>
+<text x="1010.0" y="114" text-anchor="middle" font-size="12" fill="#cbd5e1">Cloud Run</text>
+<text x="1010.0" y="131" text-anchor="middle" font-size="12" fill="#cbd5e1">21 pages</text>
+<rect x="940" y="180" width="140" height="70" rx="12" fill="rgba(255,142,83,0.16)" stroke="#ff8e53" stroke-width="1.5"/>
+<text x="1010.0" y="204" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Gmail SMTP</text>
+<text x="1010.0" y="224" text-anchor="middle" font-size="12" fill="#cbd5e1">newsletter send</text>
+<rect x="940" y="310" width="140" height="80" rx="12" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+<text x="1010.0" y="334" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Claude Desktop</text>
+<text x="1010.0" y="354" text-anchor="middle" font-size="12" fill="#cbd5e1">MCP client</text>
+<polyline points="210,80 280,80" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="340,185 340,250" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="372" y="222" text-anchor="middle" font-size="11" fill="#94a3b8">MERGE</text>
+<polyline points="480,185 480,250" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="508" y="222" text-anchor="middle" font-size="11" fill="#94a3b8">upsert</text>
+<polyline points="210,360 480,360 480,350" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="345" y="380" text-anchor="middle" font-size="11" fill="#94a3b8">embeddings</text>
+<polyline points="620,130 540,115" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<text x="580" y="106" text-anchor="middle" font-size="11" fill="#94a3b8">trigger DAG</text>
+<polyline points="620,240 542,285" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="600" y="284" text-anchor="middle" font-size="11" fill="#94a3b8">read</text>
+<polyline points="940,110 880,140" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="880,215 940,215" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="940,350 880,350" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="750,260 750,310" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<text x="782" y="290" text-anchor="middle" font-size="11" fill="#94a3b8">mounted</text>
+</svg></div></div><p class="caption">Ingestion (RSS / ArXiv / HN) → dedup (URL + semantic) → cluster → trend-rank → two parallel LangGraph agents (B2C newsletter, B2B brief) → Gmail SMTP and the Next.js UI. The Claude Desktop MCP surface mounts the same FastAPI service.</p></div></section><section id="contribution"><div class="wrap"><h2>What I built</h2><p class="sec-sub">My share of a three-person build. The pieces below are the ones I designed, implemented, and shipped.</p><div class="grid2"><div class="card"><span class="me">Built by me</span><br><h3>Airflow production pipeline</h3><p>Five production DAGs: <code>ingestion_dag</code>, <code>deduplication_dag</code>, <code>qdrant_sync_dag</code>, <code>b2c_personalization_dag</code>, and <code>b2c_newsletter_dag</code>. Parallel fan-out for RSS, ArXiv, and HackerNews, idempotent MERGE into Snowflake, per-user fan-out for personalization and newsletters, and targeted on-demand runs through <code>dag_run.conf</code>.</p></div><div class="card"><span class="me">Built by me</span><br><h3>B2C LangGraph newsletter agent</h3><p>A writer → editor graph with two execution modes: <em>fast</em> for low latency and <em>polished</em> with a second LLM pass as a quality gate. The traversal path is stored per edition so fast-versus-polished differences are debuggable.</p></div><div class="card"><span class="me">Built by me</span><br><h3>MCP server for Claude Desktop</h3><p>A FastMCP server over SSE with seven tools, mounted on the same FastAPI service. Claude Desktop can pull personalized feeds, trend snapshots, and generate newsletters or briefs in natural language.</p></div><div class="card"><span class="me">Built by me</span><br><h3>Airflow ↔ FastAPI integration</h3><p>Backend endpoints trigger DAGs through the Airflow REST API and return a <code>dag_run_id</code> in about 100 ms, so long pipelines never run inside a request that Cloud Run could kill mid-MERGE.</p></div><div class="card"><span class="me">Built by me</span><br><h3>CI/CD and observability</h3><p>GitHub Actions for lint, test, and deploy. A Prometheus layer tracking HTTP latency, LLM cost and tokens, LangGraph node latency, DAG triggers, and editor rejections, surfaced live on the admin dashboard.</p></div><div class="card"><h3>Team</h3><p><strong>Aakash Belide</strong>: Snowflake and Qdrant architecture, persona extraction, retrieval router, Next.js dashboard, Cloud Run deployment.<br><strong>Rahul Bothra</strong>: B2B strategic brief agent, company affinity extractor, behavioral refinement, testing, architecture diagrams.</p></div></div></div></section><section id="pipeline"><div class="wrap"><h2>Daily pipeline</h2><p class="sec-sub">Stages are staggered so each one finds fresh inputs from the one before it.</p><div class="tbl nowrap-off"><table><thead><tr><th>DAG</th><th>Schedule (UTC)</th><th>What it does</th></tr></thead><tbody><tr><td><code>ingestion_dag</code> ★</td><td>10:30 daily</td><td>Parallel fan-out (RSS ∥ ArXiv ∥ HN), MERGE into <code>articles_raw</code>, cache invalidation</td></tr><tr><td><code>deduplication_dag</code> ★</td><td>hourly</td><td>URL + semantic dedup into <code>article_clusters</code> and Qdrant upsert</td></tr><tr><td><code>trend_dag</code></td><td>10:50 daily</td><td>Bulk re-rank with BREAKING / TRENDING / VIRAL / COMMUNITY-PICK / REGULAR status</td></tr><tr><td><code>qdrant_sync_dag</code> ★</td><td>11:05 daily</td><td>Re-embed live clusters and bulk-upsert so Qdrant stays in sync with Snowflake after merges and backfills</td></tr><tr><td><code>b2c_personalization_dag</code> ★</td><td>11:20 daily</td><td>Top-10 personalized clusters per user into <code>daily_selections</code></td></tr><tr><td><code>b2c_newsletter_dag</code> ★</td><td>11:50 daily</td><td>One newsletter per user, persisted. No auto-email: sending is always a manual action</td></tr><tr><td><code>b2b_seo_dag</code></td><td>manual</td><td>One structured brief per company</td></tr><tr><td><code>behavioral_refinement_dag</code></td><td>weekly</td><td>Decay and merge seven days of feedback into behavioral weights</td></tr></tbody></table></div><p class="caption">★ = built by me.</p></div></section><section id="dedup"><div class="wrap"><h2>Two-layer deduplication</h2><p class="sec-sub">About 3,000 articles a day, many of them syndicated or rewritten. One technique alone is either too expensive or too leaky.</p><div class="grid2"><div class="card"><h3>Layer 1: URL dedup</h3><p>An O(n) hash comparison that catches roughly 80% of duplicates from syndicated feeds, at almost no cost.</p></div><div class="card"><h3>Layer 2: semantic dedup</h3><p><code>text-embedding-3-small</code> with cosine similarity at a 0.75 threshold catches articles republished under different paths or rewritten by other publishers.</p></div></div><div class="callout">Semantic-only would cost about 4× more. URL-only would let roughly one in five duplicates through. Running both gives the cost profile of the first and the recall of the second.</div></div></section><section id="personalization"><div class="wrap"><h2>Personalization engine</h2><p class="sec-sub">Every user persona and every company profile maps onto one shared 10-dimension taxonomy, so retrieval stays unchanged while generation knows each tenant’s vocabulary.</p><div class="flow"><span class="node">llms</span><span class="node">ai_agents</span><span class="node">computer_vision</span><span class="node">security</span><span class="node">hardware</span><span class="node">software_engineering</span><span class="node">ai_policy</span><span class="node">general_ai</span><span class="node">data_engineering</span><span class="node">startups</span></div><div class="grid2"><div class="card"><h3>B2C: blended weights</h3><pre class="code">weights[c] = explicit[c] × 0.80 + behavioral[c] × 0.20
+weights    = { c: w for c, w in weights if w ≥ 0.05 }</pre><p>Explicit weights come from onboarding. Behavioral weights drift with every like, dislike, and skip, so tomorrow’s query follows where attention went today.</p></div><div class="card"><h3>B2B: affinity as a hard constraint</h3><p>Early briefs collapsed into boilerplate because every profile field went into one long query. The fix was to extract a 10-dimension affinity vector per company and inject it into the prompt: every title must reference a dominant category, at least three keywords must be phrases a practitioner in that category would search, and zero-weight categories are banned.</p></div></div><h3 style="margin:26px 0 12px">Validation: pairwise cosine similarity of generated briefs across three cross-vertical tenants, five consecutive days</h3><div class="tbl nowrap-off"><table><thead><tr><th>Measure</th><th>Before (no affinity)</th><th>After (affinity + temp 0.4)</th><th>Change</th></tr></thead><tbody><tr><td>Cross-tenant, same date</td><td>0.6034</td><td>0.5243</td><td>−0.0790 (more differentiated)</td></tr><tr><td>Same tenant, across dates</td><td>0.9690</td><td>0.9473</td><td>−0.0218</td></tr></tbody></table></div></div></section><section id="agents"><div class="wrap"><h2>LangGraph agents</h2><p class="sec-sub">Both graphs share one base service for retries, cost tracking, and prompt caching, and every node reports latency to one Prometheus histogram.</p><h3>B2C newsletter (writer / editor)</h3><div class="flow"><span class="node">init</span><span class="arr">→</span><span class="node">curate</span><span class="arr">→</span><span class="node">write</span><span class="arr">→</span><span class="node alt">editor_review</span></div><p class="caption">Loads the persona and blends weights → retrieves and date-scopes articles → drafts the email with a Jinja2 template → second LLM pass as a tone and quality gate. Fast mode skips the editor.</p><h3 style="margin-top:22px">B2B strategic brief (analyst)</h3><div class="flow"><span class="node">intel_extract</span><span class="arr">→</span><span class="node">brief_build</span><span class="arr">→</span><span class="node alt">render_markdown</span></div><p class="caption">Scores cross-cluster signals (relevance 40%, velocity 30%, competition gap 30%) → structured Pydantic brief with affinity constraints → Markdown plus persistence. The top article for the date is a mandatory anchor, which keeps a tenant’s briefs distinct day to day.</p></div></section><section id="mcp"><div class="wrap"><h2>MCP integration</h2><p class="sec-sub">Claude Desktop or any MCP client can call CurateAI in natural language over SSE.</p><div class="tbl nowrap-off"><table><thead><tr><th>Tool</th><th>Description</th></tr></thead><tbody><tr><td><code>health_check_mcp</code></td><td>Heartbeat</td></tr><tr><td><code>get_user_archetype</code></td><td>Persona archetype for a user</td></tr><tr><td><code>filter_articles</code></td><td>Personalized recommendations with an optional category filter</td></tr><tr><td><code>get_keyword_trends</code></td><td>Ranked cluster snapshot by date and status</td></tr><tr><td><code>get_common_highlights</code></td><td>Universal trending articles across all tenants</td></tr><tr><td><code>generate_user_newsletter</code></td><td>Run the B2C graph, return rendered HTML (fast or polished)</td></tr><tr><td><code>generate_b2b_brief</code></td><td>Run the B2B graph, return Markdown for a date</td></tr></tbody></table></div></div></section><section id="decisions"><div class="wrap"><h2>Key design decisions</h2><p class="sec-sub">Each one was a trade-off with a number behind it.</p><div class="grid2"><div class="card"><h3>Airflow on a VM, not Composer</h3><p>Composer’s floor is about $350 a month for a workload that fits in 8 GB of RAM. An <code>e2-standard-2</code> VM runs about $48 a month at full utilization, and about $0.12 a day when stopped between demos.</p></div><div class="card"><h3>Thin backend, real orchestrator</h3><p>Pipeline endpoints once ran synchronously, and Cloud Run’s request timeout could kill ingestion mid-MERGE. Moving to Airflow added retries, idempotency, and an audit trail. The API call is now a trigger.</p></div><div class="card"><h3>One Qdrant, not two</h3><p>Dedup and search need identical embeddings in the backend and in Airflow. Qdrant Cloud keeps a single collection so the two sides cannot drift.</p></div><div class="card"><h3>Snowflake over Postgres</h3><p>VARIANT columns store evolving category-weight JSON without ALTER migrations, and the analytical reads (ranking, daily aggregation) suit a columnar engine.</p></div><div class="card"><h3>Gmail SMTP over MailerSend</h3><p>MailerSend’s trial allow-list blocked real recipients. Gmail SMTP with an App Password has no allow-list, enough daily capacity for the demo, and zero marginal cost. Sends are idempotent per user and edition.</p></div><div class="card"><h3>Manual send, always</h3><p>The pipeline generates newsletters but never emails them. Delivery is an explicit user or admin action, never automatic.</p></div></div></div></section><section id="observability"><div class="wrap"><h2>Observability and testing</h2><div class="tbl nowrap-off"><table><thead><tr><th>Signal</th><th>Where</th></tr></thead><tbody><tr><td>HTTP latency</td><td><code>curateai_http_request_duration_seconds</code> histogram</td></tr><tr><td>LLM cost and tokens</td><td><code>curateai_llm_cost_total</code>, <code>curateai_llm_tokens_total</code></td></tr><tr><td>LangGraph node latency</td><td><code>curateai_langgraph_node_latency_seconds</code> (B2B and B2C)</td></tr><tr><td>DAG triggers</td><td><code>curateai_dag_triggers_total{status}</code> and trigger latency</td></tr><tr><td>Agent reliability</td><td><code>curateai_newsletter_rejections_total</code> (editor rejecting drafts)</td></tr><tr><td>Live view</td><td>Admin console polls the JSON metrics summary every 10 seconds</td></tr></tbody></table></div><div class="grid3" style="margin-top:20px"><div class="card"><h3>Backend</h3><p>38 offline unit tests with Snowflake and OpenAI mocked, plus MCP end-to-end tests.</p></div><div class="card"><h3>Frontend</h3><p>59 Vitest and React Testing Library tests with MSW mocking the backend.</p></div><div class="card"><h3>CI</h3><p>GitHub Actions: ruff and tsc/eslint, pytest and vitest, a DAG AST parse, and a manual deploy workflow.</p></div></div></div></section><section id="stack"><div class="wrap"><h2>Tech stack</h2><div class="stack"><div class="card"><h3>Frontend</h3><div class="chips"><span class="chip">Next.js 16</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span></div></div><div class="card"><h3>Backend</h3><div class="chips"><span class="chip">FastAPI</span><span class="chip">Pydantic V2</span><span class="chip">structlog</span><span class="chip">slowapi</span></div></div><div class="card"><h3>Agents</h3><div class="chips"><span class="chip">LangGraph</span><span class="chip">LiteLLM</span><span class="chip">FastMCP</span></div></div><div class="card"><h3>Data</h3><div class="chips"><span class="chip">Snowflake</span><span class="chip">Qdrant Cloud</span><span class="chip">SpaCy NER</span></div></div><div class="card"><h3>Orchestration</h3><div class="chips"><span class="chip">Apache Airflow 2.x</span><span class="chip">TaskFlow API</span><span class="chip">8 DAGs</span></div></div><div class="card"><h3>Models</h3><div class="chips"><span class="chip">text-embedding-3-small</span><span class="chip">gpt-4o-mini</span></div></div><div class="card"><h3>Infrastructure</h3><div class="chips"><span class="chip">Docker</span><span class="chip">GCP Cloud Run</span><span class="chip">GCE VM</span><span class="chip">Cloud Build</span><span class="chip">Secret Manager</span></div></div><div class="card"><h3>Quality</h3><div class="chips"><span class="chip">GitHub Actions</span><span class="chip">Pytest</span><span class="chip">Vitest + RTL</span><span class="chip">MSW</span><span class="chip">Prometheus</span></div></div></div></div></section><section id="next"><div class="wrap"><h2>Known limitations and next steps</h2><p class="sec-sub">Naming these openly is part of the design.</p><div class="grid2"><div class="card"><h3>Security</h3><p>Auth is stubbed and MCP tools have no request-level authorization. Before any real launch: IAP or Auth0 in front of admin routes and per-user scoping on tools.</p></div><div class="card"><h3>Operations</h3><p>Rate limits are global rather than per user, cost visibility is per model rather than per prompt, and deploys are manual by design until staging environments exist.</p></div></div></div></section><div class="wrap"><div class="cta"><h2>Read the code</h2><p>Full source, architecture diagram, and runbook.</p><div class="btns" style="justify-content:center"><a class="btn" href="https://github.com/BigDataIA-Sat-Spring26-Team-1/Final_Project" target="_blank" rel="noopener">💻 CurateAI on GitHub</a><a class="btn ghost" href="index.html#projects">← Back to Portfolio</a></div></div></div>
+<footer>© 2026 Abhinav Kumar Piyush · <a href="index.html">Portfolio</a> · <a href="https://github.com/BigDataIA-Sat-Spring26-Team-1/Final_Project" target="_blank" rel="noopener">Source on GitHub</a></footer>
+</body>
+</html>

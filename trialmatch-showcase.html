@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrialMatch AI – Project Showcase · Abhinav Kumar Piyush</title>
+<meta name="description" content="TrialMatch AI: agentic multi-modal clinical trial matching with a 7-agent pipeline, RAG, fine-tuned BioBERT, Whisper and vision.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#0a0e27;color:#d1d5db;line-height:1.7;overflow-x:hidden;
+background-image:radial-gradient(900px 500px at 85% -5%,rgba(139,92,246,.18),transparent 60%),radial-gradient(700px 500px at 0% 20%,rgba(255,107,107,.10),transparent 60%);background-attachment:fixed}
+a{color:#ff6b6b;text-decoration:none}
+a:hover{color:#ff8e53}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,14,39,.92);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.3)}
+.nav-in{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.nav-in a{font-size:15px;font-weight:600}
+.nav-links{display:flex;gap:22px;flex-wrap:wrap}
+.nav-links a{color:#e5e7eb;font-weight:500}
+.nav-links a:hover{color:#ff6b6b}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.hero{padding:140px 0 60px}
+.eyebrow{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#9ca3af;margin-bottom:18px}
+h1{font-size:54px;line-height:1.15;font-weight:900;color:#fff;margin-bottom:14px}
+h1 .grad{background:linear-gradient(135deg,#ff6b6b,#ff8e53,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.subtitle{font-size:22px;color:#ff6b6b;margin-bottom:22px}
+.lead{font-size:18px;max-width:880px;color:#d1d5db;margin-bottom:26px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.pill{background:rgba(139,92,246,.2);color:#a78bfa;padding:6px 13px;border-radius:15px;font-size:12px;font-weight:600}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-weight:600;font-size:16px;background:linear-gradient(135deg,#ff6b6b,#ff8e53);color:#fff}
+.btn:hover{color:#fff;transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,107,.35)}
+.btn.ghost{background:rgba(139,92,246,.18);border:1px solid rgba(139,92,246,.4);color:#e5e7eb}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin:10px 0 10px}
+.stat{background:rgba(30,41,59,.55);border:1px solid rgba(139,92,246,.3);border-radius:16px;padding:20px 18px;text-align:center}
+.stat b{display:block;font-size:30px;line-height:1.1;color:#fff;font-weight:800;margin-bottom:6px;background:linear-gradient(135deg,#ff6b6b,#ffd93d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat span{font-size:13px;color:#9ca3af;display:block;line-height:1.4}
+section{padding:56px 0 10px}
+h2{font-size:34px;color:#fff;font-weight:800;margin-bottom:8px}
+.sec-sub{color:#9ca3af;margin-bottom:26px;max-width:860px}
+h3{font-size:19px;color:#fff;margin-bottom:8px}
+.grid2,.grid3{display:grid;gap:20px}
+.grid2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.grid3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:rgba(30,41,59,.55);border:1px solid rgba(139,92,246,.3);border-radius:16px;padding:24px}
+.card:hover{border-color:rgba(255,107,107,.6)}
+.card p{font-size:15px;color:#cbd5e1}
+.card ul{margin:8px 0 0 18px;font-size:15px;color:#cbd5e1}
+.card li{margin-bottom:4px}
+.me{display:inline-block;background:rgba(34,197,94,.16);color:#22c55e;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;margin-bottom:10px}
+.diagram{background:rgba(15,23,42,.65);border:1px solid rgba(139,92,246,.3);border-radius:16px;padding:14px;margin:6px 0 10px}
+.diagram-scroll{overflow-x:auto}
+.caption{font-size:14px;color:#9ca3af;margin-top:10px}
+.tbl{overflow-x:auto;border:1px solid rgba(139,92,246,.3);border-radius:14px;background:rgba(30,41,59,.4)}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(139,92,246,.15)}
+th{background:rgba(139,92,246,.14);color:#fff;font-size:13px;letter-spacing:.5px;text-transform:uppercase}
+tr:last-child td{border-bottom:none}
+td code,.card code,p code{background:rgba(139,92,246,.2);color:#c4b5fd;padding:1px 6px;border-radius:5px;font-size:13px}
+td:first-child{color:#fff;font-weight:600;white-space:nowrap}
+.nowrap-off td:first-child{white-space:normal}
+pre.code{background:#070a1f;border:1px solid rgba(139,92,246,.3);border-radius:12px;padding:18px;overflow-x:auto;font-size:13.5px;line-height:1.55;color:#e2e8f0;font-family:'SF Mono',Menlo,Consolas,monospace}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0}
+.node{background:rgba(139,92,246,.18);border:1px solid rgba(139,92,246,.5);color:#fff;padding:8px 14px;border-radius:10px;font-size:14px;font-weight:600}
+.node.alt{background:rgba(255,107,107,.15);border-color:rgba(255,107,107,.5)}
+.node.ok{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.5)}
+.arr{color:#9ca3af}
+.callout{border-left:4px solid #ff6b6b;background:rgba(255,107,107,.08);padding:16px 20px;border-radius:0 12px 12px 0;color:#e5e7eb;margin:18px 0;font-size:15.5px}
+.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.stack .card{padding:18px 20px}
+.stack h3{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#9ca3af;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(139,92,246,.18);color:#c4b5fd;padding:5px 11px;border-radius:14px;font-size:13px;font-weight:600}
+.cta{margin:70px 0 30px;text-align:center;background:rgba(30,41,59,.55);border:1px solid rgba(139,92,246,.3);border-radius:20px;padding:44px 24px}
+.cta h2{font-size:30px}
+.cta p{margin-bottom:22px;color:#9ca3af}
+footer{text-align:center;color:#9ca3af;padding:30px 0 50px;font-size:14px}
+@media(max-width:768px){h1{font-size:36px}.hero{padding-top:150px}.subtitle{font-size:18px}h2{font-size:28px}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="nav-in">
+<a href="index.html#projects">← Back to Portfolio</a>
+<div class="nav-links"><a href="#architecture">Architecture</a><a href="#components">Components</a><a href="#agents">Agents</a><a href="#finetune">Fine-tuning</a><a href="#eval">Evaluation</a><a href="#stack">Stack</a></div>
+<a href="https://github.com/abhinav07p/PromptAI_Final_Project_002038671" target="_blank" rel="noopener">GitHub ↗</a>
+</div></nav>
+<header class="hero"><div class="wrap">
+<div class="eyebrow">Project Showcase · Generative AI course · Spring 2026 · Individual project</div>
+<h1>Trial<span class="grad">Match AI</span></h1>
+<div class="subtitle">Agentic multi-modal clinical trial matching</div>
+<p class="lead">TrialMatch AI takes a patient profile entered as text, voice dictation, or a medical image and runs it through a seven-agent reasoning pipeline. It extracts medical entities, retrieves candidate trials from live government APIs and a vector store, parses eligibility criteria into structured rules, cross-checks medications against FDA labels, and returns ranked matches with criterion-by-criterion reasoning and source citations.</p>
+<div class="pills"><span class="pill">Python</span><span class="pill">LangChain</span><span class="pill">Streamlit</span><span class="pill">Qdrant</span><span class="pill">BioBERT</span><span class="pill">Whisper</span><span class="pill">Ollama</span><span class="pill">OpenAI</span><span class="pill">Anthropic</span><span class="pill">PyTorch</span></div>
+<div class="btns"><a class="btn" href="https://github.com/abhinav07p/PromptAI_Final_Project_002038671" target="_blank" rel="noopener">💻 View on GitHub</a><a class="btn ghost" href="index.html#projects">← All Projects</a></div>
+</div></header><div class="wrap"><div class="stats"><div class="stat"><b>7</b><span>agents in the reasoning pipeline</span></div><div class="stat"><b>5</b><span>generative AI components</span></div><div class="stat"><b>3</b><span>input modalities: text, voice, image</span></div><div class="stat"><b>4</b><span>public government data sources</span></div><div class="stat"><b>3</b><span>operating modes: demo, Ollama, API</span></div><div class="stat"><b>4</b><span>export formats: PDF, CSV, JSON, audio</span></div></div></div><section id="problem"><div class="wrap"><h2>The problem</h2><p class="sec-sub">Clinical trial matching is broken because no human can cross-reference every patient against hundreds of trials with dozens of eligibility criteria each. Figures below are the ones cited in the project README.</p><div class="stats"><div class="stat"><b>~5%</b><span>of adult cancer patients enter clinical trials</span></div><div class="stat"><b>86%</b><span>of trials miss enrollment timelines</span></div><div class="stat"><b>20%</b><span>of trials close for low enrollment</span></div><div class="stat"><b>$8M</b><span>potential cost per day of trial delay</span></div></div><div class="callout">The patients exist and the trials exist. They never find each other. It is a matching problem hiding inside a healthcare system, which is exactly where an agentic pipeline can help.</div></div></section><section id="architecture"><div class="wrap"><h2>System architecture</h2><p class="sec-sub">Three input paths merge into one patient profile, then flow through retrieval, parsing, safety checking, and scoring.</p><div class="diagram"><div class="diagram-scroll">
+<svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TrialMatch AI 7-agent pipeline" style="min-width:864px;width:100%;height:auto;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/></marker></defs>
+<rect x="20" y="40" width="150" height="60" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="95.0" y="64" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Text / JSON</text>
+<text x="95.0" y="84" text-anchor="middle" font-size="12" fill="#cbd5e1">patient profile</text>
+<rect x="20" y="130" width="150" height="60" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="95.0" y="154" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Voice</text>
+<text x="95.0" y="174" text-anchor="middle" font-size="12" fill="#cbd5e1">dictation</text>
+<rect x="20" y="220" width="150" height="60" rx="12" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="95.0" y="244" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Image</text>
+<text x="95.0" y="264" text-anchor="middle" font-size="12" fill="#cbd5e1">lab / pathology report</text>
+<rect x="230" y="40" width="190" height="60" rx="12" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="325.0" y="64" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Agent 1 · Entity Extractor</text>
+<text x="325.0" y="84" text-anchor="middle" font-size="12" fill="#cbd5e1">NER + RxNorm</text>
+<rect x="230" y="130" width="190" height="60" rx="12" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="325.0" y="154" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Agent 2 · Voice Processor</text>
+<text x="325.0" y="174" text-anchor="middle" font-size="12" fill="#cbd5e1">Whisper STT</text>
+<rect x="230" y="220" width="190" height="60" rx="12" fill="rgba(139,92,246,0.18)" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="325.0" y="244" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Agent 3 · Image Analyzer</text>
+<text x="325.0" y="264" text-anchor="middle" font-size="12" fill="#cbd5e1">OCR + Vision LLM</text>
+<circle cx="500" cy="170" r="22" fill="rgba(255,107,107,0.18)" stroke="#ff6b6b" stroke-width="1.5"/><text x="500" y="175" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">merge</text>
+<rect x="330" y="340" width="170" height="80" rx="12" fill="rgba(255,107,107,0.16)" stroke="#ff6b6b" stroke-width="1.5"/>
+<text x="415.0" y="364" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Agent 4 · Trial Retriever</text>
+<text x="415.0" y="384" text-anchor="middle" font-size="12" fill="#cbd5e1">ClinicalTrials.gov</text>
+<text x="415.0" y="401" text-anchor="middle" font-size="12" fill="#cbd5e1">+ Qdrant search</text>
+<rect x="530" y="340" width="170" height="80" rx="12" fill="rgba(255,107,107,0.16)" stroke="#ff6b6b" stroke-width="1.5"/>
+<text x="615.0" y="364" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Agent 5 · Criteria Parser</text>
+<text x="615.0" y="384" text-anchor="middle" font-size="12" fill="#cbd5e1">fine-tuned BioBERT</text>
+<text x="615.0" y="401" text-anchor="middle" font-size="12" fill="#cbd5e1">or few-shot LLM</text>
+<rect x="730" y="340" width="170" height="80" rx="12" fill="rgba(255,107,107,0.16)" stroke="#ff6b6b" stroke-width="1.5"/>
+<text x="815.0" y="364" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Agent 6 · Cross-Checker</text>
+<text x="815.0" y="384" text-anchor="middle" font-size="12" fill="#cbd5e1">OpenFDA drug labels</text>
+<text x="815.0" y="401" text-anchor="middle" font-size="12" fill="#cbd5e1">interaction logic</text>
+<rect x="930" y="340" width="170" height="80" rx="12" fill="rgba(255,107,107,0.16)" stroke="#ff6b6b" stroke-width="1.5"/>
+<text x="1015.0" y="364" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Agent 7 · Scorer</text>
+<text x="1015.0" y="384" text-anchor="middle" font-size="12" fill="#cbd5e1">ranking + explanations</text>
+<text x="1015.0" y="401" text-anchor="middle" font-size="12" fill="#cbd5e1">with citations</text>
+<rect x="930" y="90" width="170" height="150" rx="12" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+<text x="1015.0" y="114" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Outputs</text>
+<text x="1015.0" y="134" text-anchor="middle" font-size="12" fill="#cbd5e1">PDF report</text>
+<text x="1015.0" y="151" text-anchor="middle" font-size="12" fill="#cbd5e1">CSV</text>
+<text x="1015.0" y="168" text-anchor="middle" font-size="12" fill="#cbd5e1">JSON audit trail</text>
+<text x="1015.0" y="185" text-anchor="middle" font-size="12" fill="#cbd5e1">Audio summary (TTS)</text>
+<rect x="330" y="450" width="170" height="55" rx="12" fill="rgba(255,142,83,0.16)" stroke="#ff8e53" stroke-width="1.5"/>
+<text x="415.0" y="474" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Government APIs</text>
+<text x="415.0" y="494" text-anchor="middle" font-size="12" fill="#cbd5e1">CT.gov · NCI · RxNorm</text>
+<rect x="730" y="450" width="170" height="55" rx="12" fill="rgba(255,142,83,0.16)" stroke="#ff8e53" stroke-width="1.5"/>
+<text x="815.0" y="474" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">OpenFDA</text>
+<text x="815.0" y="494" text-anchor="middle" font-size="12" fill="#cbd5e1">drug labels · FAERS</text>
+<polyline points="170,70 230,70" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="170,160 230,160" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="170,250 230,250" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="420,70 480,160" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="420,160 478,170" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="420,250 482,184" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="500,192 415,340" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="500,380 530,380" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="700,380 730,380" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="900,380 930,380" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="1015,340 1015,240" fill="none" stroke="#94a3b8" stroke-width="1.6" marker-end="url(#ah)"/>
+<polyline points="415,450 415,420" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+<polyline points="815,450 815,420" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+</svg></div></div><p class="caption">Every recommendation ships with a full audit trail. The system is designed to fail loudly: criteria it could not evaluate are flagged as NOT EVALUATED instead of being hidden behind a confident score.</p></div></section><section id="components"><div class="wrap"><h2>Five generative AI components</h2><p class="sec-sub">Each one is implemented and wired into the pipeline.</p><div class="tbl nowrap-off"><table><thead><tr><th>#</th><th>Component</th><th>Implementation</th></tr></thead><tbody><tr><td>1</td><td>Prompt engineering</td><td>Few-shot criteria parsing, multi-agent prompt chains, context management across seven agents, edge-case handling with coverage tracking</td></tr><tr><td>2</td><td>Fine-tuning</td><td>BioBERT for criteria decomposition and a medical NER model for entity extraction. Train on Colab, drop the weights into the project, and the app auto-detects them</td></tr><tr><td>3</td><td>RAG</td><td>Qdrant vector store with configurable chunking, plus live retrieval from ClinicalTrials.gov, OpenFDA, NCI, and RxNorm</td></tr><tr><td>4</td><td>Multimodal integration</td><td>Whisper voice-to-text, OCR plus Vision LLM image analysis, and TTS audio summaries, merged into one patient profile</td></tr><tr><td>5</td><td>Synthetic data generation</td><td>LLM-powered patient generator with demographic diversity controls, edge-case injection, and quality metrics, so benchmarking needs no real patient data</td></tr></tbody></table></div></div></section><section id="agents"><div class="wrap"><h2>The seven agents</h2><div class="tbl nowrap-off"><table><thead><tr><th>Agent</th><th>Role</th><th>Key technology</th></tr></thead><tbody><tr><td>1 · Entity Extractor</td><td>Medical entities (conditions, biomarkers, medications) with drug names normalized</td><td>Fine-tuned NER or LLM, RxNorm API</td></tr><tr><td>2 · Voice Processor</td><td>Transcribes dictation and extracts structured data</td><td>OpenAI Whisper (local or API)</td></tr><tr><td>3 · Image Analyzer</td><td>Reads lab reports, pathology reports, and prescriptions</td><td>EasyOCR / Tesseract, GPT-4o or LLaVA vision</td></tr><tr><td>4 · Trial Retriever</td><td>Finds candidate trials</td><td>ClinicalTrials.gov v2 API, Qdrant vector search</td></tr><tr><td>5 · Criteria Parser</td><td>Turns free-text eligibility into structured rules</td><td>Fine-tuned BioBERT or few-shot prompting</td></tr><tr><td>6 · FDA Cross-Checker</td><td>Checks medications against drug labels for interactions</td><td>OpenFDA label API, interaction logic</td></tr><tr><td>7 · Eligibility Scorer</td><td>Scores, ranks, explains, and generates reports</td><td>Match scoring, natural-language explanations</td></tr></tbody></table></div></div></section><section id="modes"><div class="wrap"><h2>Three operating modes</h2><p class="sec-sub">The same app runs anywhere, from a grader’s laptop to production.</p><div class="grid3"><div class="card"><h3>🎯 Demo mode</h3><p>No setup. Pre-loaded patients and cached trials, so everything works offline with no keys.</p></div><div class="card"><h3>🦙 Ollama mode</h3><p>Local LLM through Ollama (Mistral, Llama 3, Gemma 2, and LLaVA for images). Free and private.</p></div><div class="card"><h3>🔑 API mode</h3><p>OpenAI or Anthropic keys for the best quality on production runs.</p></div></div></div></section><section id="finetune"><div class="wrap"><h2>Fine-tuning workflow</h2><p class="sec-sub">Optional by design: without trained weights the app falls back to LLM-based extraction. With them, the README reports inference about 14× faster and free.</p><div class="grid2"><div class="card"><h3>Model 1 · Criteria parser (BioBERT)</h3><p>Review the JSONL training data, run the Colab notebook on a free T4 GPU, download the zip, unzip into <code>fine_tuning/models/criteria_parser/</code>, and the app picks it up in the sidebar.</p></div><div class="card"><h3>Model 2 · Medical NER</h3><p>The same loop for entity extraction: JSONL data, Colab training, drop the weights into <code>fine_tuning/models/medical_ner/</code>. The app scans for <code>config.json</code> to auto-detect.</p></div></div></div></section><section id="multimodal"><div class="wrap"><h2>Multimodal input and output</h2><div class="grid3"><div class="card"><h3>🎤 Voice in</h3><p>Upload audio or record in the browser. Whisper transcribes, an LLM extracts structured medical entities, and they merge with any existing profile.</p></div><div class="card"><h3>🖼️ Documents in</h3><p>Lab reports, pathology reports, and prescriptions are read by OCR, then a vision model structures lab values, biomarkers, and medications.</p></div><div class="card"><h3>🔊 Audio out</h3><p>A spoken summary of the top matches, downloadable as MP3 through gTTS or OpenAI TTS.</p></div></div><h3 style="margin:26px 0 12px">Ingestion and export</h3><div class="tbl nowrap-off"><table><thead><tr><th>Direction</th><th>Options</th></tr></thead><tbody><tr><td>Ingest</td><td>Bulk-fetch trials from ClinicalTrials.gov by condition, phase, and status; import CSV, JSON, or JSONL; embed criteria into Qdrant with configurable chunking</td></tr><tr><td>Export</td><td>PDF report with ranked trials and criterion-level reasoning, CSV, JSON audit trail of every agent’s input, output, and timestamp, and an audio summary</td></tr></tbody></table></div></div></section><section id="eval"><div class="wrap"><h2>Evaluation framework</h2><p class="sec-sub">A built-in benchmark runner scores the pipeline against gold-standard data. These are the targets the project is measured against.</p><div class="tbl nowrap-off"><table><thead><tr><th>Metric</th><th>Target</th><th>What it measures</th></tr></thead><tbody><tr><td>Retrieval recall</td><td>≥ 85%</td><td>Of all truly eligible trials, how many were found</td></tr><tr><td>Retrieval precision</td><td>≥ 75%</td><td>Of returned trials, how many were actually eligible</td></tr><tr><td>F₂ score</td><td>n/a</td><td>Recall-weighted (β = 2), because missing a match is worse than a false alarm</td></tr><tr><td>Exclusion accuracy</td><td>≥ 90%</td><td>When the system says excluded by criterion X, is that correct</td></tr><tr><td>Faithfulness</td><td>≥ 0.85</td><td>Does the explanation match the structured reasoning trace (LLM-as-judge)</td></tr><tr><td>Criterion coverage</td><td>≥ 70%</td><td>Share of criteria actually evaluated rather than skipped</td></tr><tr><td>Voice word error rate</td><td>≤ 15%</td><td>Accuracy on medical dictation</td></tr><tr><td>Image OCR accuracy</td><td>≥ 90%</td><td>Correct field extraction from lab report images</td></tr></tbody></table></div></div></section><section id="ethics"><div class="wrap"><h2>Ethics and privacy by design</h2><div class="grid2"><div class="card"><h3>No real patient data</h3><p>All profiles are synthetic and HIPAA-safe. Only condition-level queries reach external APIs, and patient data never leaves the local machine.</p></div><div class="card"><h3>Public sources only</h3><p>Every API is public and government-maintained. No proprietary data and no scraping.</p></div><div class="card"><h3>Transparent reasoning</h3><p>Every match or exclusion cites the exact criterion and its data source.</p></div><div class="card"><h3>Fail loudly</h3><p>Unevaluated criteria are flagged as NOT EVALUATED. Trial diversity data is surfaced and the system never filters on demographics.</p></div></div></div></section><section id="stack"><div class="wrap"><h2>Tech stack</h2><div class="stack"><div class="card"><h3>Framework</h3><div class="chips"><span class="chip">Python 3.10+</span><span class="chip">Streamlit (multi-page)</span><span class="chip">Plotly</span><span class="chip">LangChain</span></div></div><div class="card"><h3>LLM and AI</h3><div class="chips"><span class="chip">Ollama</span><span class="chip">OpenAI GPT-4o</span><span class="chip">Claude Sonnet</span><span class="chip">LLaVA</span></div></div><div class="card"><h3>Fine-tuning</h3><div class="chips"><span class="chip">Hugging Face Transformers</span><span class="chip">PyTorch</span><span class="chip">Google Colab</span></div></div><div class="card"><h3>RAG and data</h3><div class="chips"><span class="chip">Qdrant</span><span class="chip">sentence-transformers</span><span class="chip">ClinicalTrials.gov v2</span><span class="chip">OpenFDA</span><span class="chip">NCI Trials API</span><span class="chip">RxNorm</span></div></div><div class="card"><h3>Multimodal</h3><div class="chips"><span class="chip">Whisper</span><span class="chip">EasyOCR / Tesseract</span><span class="chip">gTTS</span><span class="chip">GPT-4o Vision / LLaVA</span></div></div></div></div></section><div class="wrap"><div class="cta"><h2>Read the code</h2><p>Source, fine-tuning notebooks, and architecture diagram.</p><div class="btns" style="justify-content:center"><a class="btn" href="https://github.com/abhinav07p/PromptAI_Final_Project_002038671" target="_blank" rel="noopener">💻 View on GitHub</a><a class="btn ghost" href="index.html#projects">← Back to Portfolio</a></div></div></div>
+<footer>© 2026 Abhinav Kumar Piyush · <a href="index.html">Portfolio</a> · <a href="https://github.com/abhinav07p/PromptAI_Final_Project_002038671" target="_blank" rel="noopener">Source on GitHub</a></footer>
+</body>
+</html>
